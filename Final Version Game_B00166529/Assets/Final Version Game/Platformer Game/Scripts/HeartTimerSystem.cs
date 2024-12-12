@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement; // Required for scene management
 
 public class HeartTimerSystem : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class HeartTimerSystem : MonoBehaviour
         // Initialize timer and hearts
         UpdateTimerUI();
         gameOverPanel.SetActive(false);
+        Time.timeScale = 1; // Ensure the game is running when the scene starts
     }
 
     void Update()
@@ -58,5 +60,19 @@ public class HeartTimerSystem : MonoBehaviour
         }
         gameOverPanel.SetActive(true);
         Time.timeScale = 0; // Pause the game
+    }
+
+    // Method for Restart Button
+    public void RestartGame()
+    {
+        Time.timeScale = 1; // Resume the game
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload current scene
+    }
+
+    // Method for Main Menu Button
+    public void LoadMainMenu()
+    {
+        Time.timeScale = 1; // Resume the game
+        SceneManager.LoadScene("Menu"); // Load Menu scene
     }
 }

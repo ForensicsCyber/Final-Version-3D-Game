@@ -8,24 +8,42 @@ public class PauseManager : MonoBehaviour
 
     private bool isPaused = false;
 
+    void Update()
+    {
+        // Toggle pause state with the Escape key
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+                ResumeGame();
+            else
+                PauseGame();
+        }
+    }
+
     // Pause the game
     public void PauseGame()
     {
-        isPaused = true;
-        pauseMenu.SetActive(true);
-        pauseButton.SetActive(false);
-        Time.timeScale = 0f; // Freeze game time
-        AudioListener.pause = true; // Pause all audio
+        if (!isPaused)
+        {
+            isPaused = true;
+            pauseMenu.SetActive(true);
+            pauseButton.SetActive(false);
+            Time.timeScale = 0f; // Freeze game time
+            AudioListener.pause = true; // Pause all audio
+        }
     }
 
     // Resume the game
     public void ResumeGame()
     {
-        isPaused = false;
-        pauseMenu.SetActive(false);
-        pauseButton.SetActive(true);
-        Time.timeScale = 1f; // Resume game time
-        AudioListener.pause = false; // Resume all audio
+        if (isPaused)
+        {
+            isPaused = false;
+            pauseMenu.SetActive(false);
+            pauseButton.SetActive(true);
+            Time.timeScale = 1f; // Resume game time
+            AudioListener.pause = false; // Resume all audio
+        }
     }
 
     // Restart the game

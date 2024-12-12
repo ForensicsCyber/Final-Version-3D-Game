@@ -45,7 +45,6 @@ public class GameOverManager : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1f; // Resume the time scale
-        // Replace "MainMenu" with the actual scene name for the Main Menu
         SceneManager.LoadScene("Menu");
     }
 }

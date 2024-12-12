@@ -35,7 +35,7 @@ public class MainMenu : MonoBehaviour
     public void OpenGitHubRepo()
     {
         // URL of the GitHub Repository
-        string githubURL = "https://github.com/ForensicsCyber/Final-Version-Game";
+        string githubURL = "https://github.com/ForensicsCyber/Final-Version-3D-Game";
 
         // Open the URL in the default browser
         Application.OpenURL(githubURL);

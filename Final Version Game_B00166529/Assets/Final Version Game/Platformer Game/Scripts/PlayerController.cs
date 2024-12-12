@@ -344,20 +344,34 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Shuriken cooldown reset. Player can shoot again.");
     }
 
-    // New Method: Handle bullet hits
+    private void GameOver()
+    {
+        // Display the bullet hit message
+        if (bulletHitMessage != null)
+        {
+            bulletHitMessage.gameObject.SetActive(true);
+            bulletHitMessage.text = "Click the pause button to restart the Game!";
+        }
+
+        // Stop the game
+        Time.timeScale = 0f; // Pause the game
+        Debug.Log("Game Over. Game paused.");
+    }
+
+    // Update the OnBulletHit method
     public void OnBulletHit()
     {
         bulletHitCount++;
         Debug.Log($"Player hit by bullet {bulletHitCount} times.");
 
-        if (bulletHitCount >= 3)
+        if (bulletHitCount >= 2) // Player is destroyed after 2 hits
         {
-            if (bulletHitMessage != null)
-            {
-                bulletHitMessage.gameObject.SetActive(true);
-                bulletHitMessage.text = "Click the Pause Button to Restart the Game!";
-            }
-            Destroy(gameObject); // Destroy the player
+            // Call GameOver instead of destroying the player immediately
+            GameOver();
+
+            // Optionally, disable the player's movement and shooting
+            Destroy(gameObject); // Destroy the player after handling the GameOver logic
         }
     }
+
 }
